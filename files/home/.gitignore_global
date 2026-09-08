@@ -1,0 +1,20 @@
+# env
+.envrc
+.nvmrc
+
+# Editors
+.idea/
+.vscode/
+.zed/
+
+# Gemsets
+.rbenv-gemsets
+.gems
+
+# Custom
+**/.yardoc
+
+# LLM
+docs/superpowers/
+.pi-subagents/
+.codegraph/
