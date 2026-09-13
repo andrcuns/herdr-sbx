@@ -21,7 +21,7 @@ jobs:
       - name: Set mise version
         id: version
         run: |
-          echo "tag=v2026.9.4" >> "$GITHUB_OUTPUT"
+          echo "tag=v2026.9.6" >> "$GITHUB_OUTPUT"
 
       - name: Log in to GitHub Container Registry
         if: github.event_name != 'pull_request'
