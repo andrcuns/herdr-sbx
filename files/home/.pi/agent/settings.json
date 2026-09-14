@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@vndv/pi-codegraph",
+    "npm:context-mode",
+    "npm:pi-subagents"
+  ]
+}

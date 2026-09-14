@@ -47,7 +47,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ghcr.io/andrcuns/pi-sbx:${{ steps.version.outputs.tag }}
-            ghcr.io/andrcuns/pi-sbx:latest
+            ghcr.io/andrcuns/herdr-sbx:${{ steps.version.outputs.tag }}
+            ghcr.io/andrcuns/herdr-sbx:latest
           build-args: |
             MISE_VERSION=${{ steps.version.outputs.tag }}

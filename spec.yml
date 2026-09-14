@@ -1,0 +1,24 @@
+schemaVersion: "2"
+kind: sandbox
+name: herdr
+sandbox:
+  image: "ghcr.io/andrcuns/herdr-sbx:latest"
+  entrypoint: [herdr]
+setup:
+  startup:
+    - description: "Setup git for commit signing"
+      user: "1000"
+      command: [bash, /home/agent/setup-git.sh]
+  install:
+    - description: "Install node"
+      command: "mise use -g node"
+      user: "1000"
+    - description: "Install codegraph"
+      command: "mise use -g aqua:colbymchenry/codegraph"
+      user: "1000"
+    - description: "Install hunk"
+      command: "mise use -g hunk"
+      user: "1000"
+    - description: "Install pi coding harness"
+      command: "npm install -g @earendil-works/pi-coding-agent && pi update --extensions"
+      user: "1000"
