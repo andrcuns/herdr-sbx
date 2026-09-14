@@ -69,6 +69,10 @@ alias gbd='git push origin --delete $(git_current_branch)'
 alias gcleanup=$'git fetch -p && git branch -v | grep \'gone\' | awk \'{print $1}\' | xargs -n 1 git branch -D'
 alias lg='lazygit'
 
+function set-git-user() {
+  git config --global user.name "$1" && git config --global user.email "$2"
+}
+
 # docker
 alias dockerstopall='docker stop $(docker ps -a -q)'
 alias dockerrmall='docker rm $(docker ps -a -q)'
