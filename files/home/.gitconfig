@@ -1,40 +1,40 @@
 [branch]
-  	autosetupmerge = true
+	autosetupmerge = true
 [push]
-  	default = tracking
+	default = tracking
 [pull]
-  	rebase = true
+	rebase = true
 [color]
-  	ui = auto
+	ui = auto
 [color "branch"]
-  	current = yellow reverse
-  	local = yellow
-  	remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-  	meta = yellow bold
-  	frag = magenta bold
-  	old = red bold
-  	new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
-  	added = yellow
-  	changed = green
-  	untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [color "diff-highlight"]
-  	oldNormal = red bold
-  	oldHighlight = red bold 52
-  	newNormal = green bold
-  	newHighlight = green bold 22
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [apply]
-  	whitespace = nowarn
+	whitespace = nowarn
 [core]
-  	pager = diff-so-fancy | less --tabs=1,5 -R
-  	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
+	checkStat = minimal
 [help]
-  	autocorrect = 1
+	autocorrect = 1
 [filter "lfs"]
-  	smudge = git-lfs smudge -- %f
-  	process = git-lfs filter-process
-  	clean = git-lfs clean -- %f
-  	required = true
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	clean = git-lfs clean -- %f
+	required = true
 [init]
 	defaultBranch = main
