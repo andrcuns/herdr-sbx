@@ -73,6 +73,11 @@ function set-git-user() {
   git config --global user.name "$1" && git config --global user.email "$2"
 }
 
+# GitHub CLI
+alias gstacka='gh stack add'
+alias gstackp='gh stack push'
+alias gstacks='gh stack submit'
+
 # docker
 alias dockerstopall='docker stop $(docker ps -a -q)'
 alias dockerrmall='docker rm $(docker ps -a -q)'
