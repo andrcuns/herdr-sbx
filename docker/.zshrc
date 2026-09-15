@@ -4,9 +4,6 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # =====================================================================================================================
 # Exports
 # =====================================================================================================================
-# GPG vars
-export LANG=en_US.UTF-8
-
 # Preferred editor
 export EDITOR='nvim'
 export SUDO_EDITOR="$EDITOR"

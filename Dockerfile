@@ -27,6 +27,7 @@ RUN set -eu; \
 
 # env
 ENV SHELL=/usr/bin/zsh \
+    LANG=C.UTF-8 \
     OZSH_DIR=/home/agent/.oh-my-zsh
 
 USER agent
