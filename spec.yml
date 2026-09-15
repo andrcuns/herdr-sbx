@@ -19,6 +19,9 @@ setup:
     - description: "Install hunk"
       command: "mise use -g hunk"
       user: "1000"
-    - description: "Install pi coding harness"
-      command: "npm install -g @earendil-works/pi-coding-agent && pi update --extensions"
+    - description: "Install global npm packages"
       user: "1000"
+      command: |
+          npm config set allow-scripts=@ataraxy-labs/sem,@earendil-works/pi-coding-agent,diff-so-fancy --location=user
+          npm install -g diff-so-fancy @ataraxy-labs/sem @earendil-works/pi-coding-agent
+          pi update --extensions
