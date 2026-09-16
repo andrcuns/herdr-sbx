@@ -10,14 +10,8 @@ setup:
       user: "1000"
       command: [bash, /home/agent/setup-git.sh]
   install:
-    - description: "Install node"
-      command: "mise use -g node"
-      user: "1000"
-    - description: "Install codegraph"
-      command: "mise use -g aqua:colbymchenry/codegraph"
-      user: "1000"
-    - description: "Install hunk"
-      command: "mise use -g hunk"
+    - description: "Install global mise tools"
+      command: "mise install"
       user: "1000"
     - description: "Install global npm packages"
       user: "1000"
