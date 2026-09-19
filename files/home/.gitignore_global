@@ -15,6 +15,7 @@
 **/.yardoc
 
 # LLM
+AGENTS.override.md
 docs/superpowers/
 .pi-subagents/
 .codegraph/
