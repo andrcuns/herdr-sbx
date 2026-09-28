@@ -4,6 +4,8 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # =====================================================================================================================
 # Exports
 # =====================================================================================================================
+export DISABLE_AUTO_UPDATE=true
+
 # Preferred editor
 export EDITOR='nvim'
 export SUDO_EDITOR="$EDITOR"
