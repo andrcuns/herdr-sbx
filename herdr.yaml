@@ -8,6 +8,10 @@ sourceUrl: https://github.com/andrcuns/herdr-sbx
 capabilities:
   - type: com.docker.sandbox/sbx@1
 
+  - type: com.docker.sandbox/agent-skills@1
+    config:
+      path: /home/agent/.pi/agent/skills
+
   - type: com.docker.sandbox/network-policy@1
     config:
       install:
