@@ -4,7 +4,9 @@ set +e
 # Configure Git SSH signing from the forwarded SSH agent at runtime.
 # The SSH agent socket is available in interactive runs, but may not be
 # available when Docker Sandboxes executes kit startup commands.
-signing_key="$(ssh-add -L 2>/dev/null | head -n 1 || true)"
+# Failed ssh-add calls can write status text to stdout instead of a key.
+signing_key="$(ssh-add -L 2>/dev/null)" || signing_key=""
+signing_key="${signing_key%%$'\n'*}"
 if [ -n "$signing_key" ]; then
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true

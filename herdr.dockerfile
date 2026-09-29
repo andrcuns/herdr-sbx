@@ -56,3 +56,6 @@ RUN curl https://mise.run | sh && mise --version
 # install herdr
 RUN curl -fsSL https://herdr.dev/install.sh | sh && herdr --version
 COPY --chown=agent:agent docker/herdr/config.toml /home/agent/.config/herdr/config.toml
+
+ENTRYPOINT ["herdr"]
+CMD []

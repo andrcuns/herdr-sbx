@@ -1,0 +1,46 @@
+# syntax=docker/sandbox-kit:3
+schemaVersion: "3"
+kind: workload
+displayName: herdr
+description: Pi development sandbox with herdr, mise, and an opinionated zsh setup.
+sourceUrl: https://github.com/andrcuns/herdr-sbx
+
+capabilities:
+  - type: com.docker.sandbox/sbx@1
+
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      install:
+        allow: ["*"]
+      runtime:
+        allow: ["*"]
+
+  - type: com.docker.sandbox/ssh-agent@1
+    optional: true
+    description: Use the forwarded SSH agent for Git authentication and commit signing.
+    config:
+      phase: runtime
+      unrestricted: true
+
+  - type: com.docker.sandbox/git-identity@1
+    optional: true
+    description: Use the runtime-provided Git author name and email.
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      startup:
+        - description: "Setup git for commit signing"
+          user: "1000"
+          env: [SSH_AUTH_SOCK]
+          command: [bash, /home/agent/setup-git.sh]
+      install:
+        - description: "Install global mise tools"
+          command: "mise install"
+          user: "1000"
+        - description: "Install global npm packages"
+          user: "1000"
+          env: [NPM_CONFIG_PREFIX]
+          command: |
+            npm config set allow-scripts=@ataraxy-labs/sem,@earendil-works/pi-coding-agent,diff-so-fancy --location=user
+            npm install -g diff-so-fancy @ataraxy-labs/sem @earendil-works/pi-coding-agent
+            pi update --extensions
