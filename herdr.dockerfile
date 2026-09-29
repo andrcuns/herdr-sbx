@@ -25,10 +25,19 @@ RUN set -eu; \
     && apt-get autoclean; \
     chsh -s /usr/bin/zsh agent
 
+# Add mise
+COPY --from=ghcr.io/jdx/mise:latest /usr/local/bin/mise /usr/local/bin/mise
+
 # env
 ENV SHELL=/usr/bin/zsh \
     LANG=C.UTF-8 \
-    OZSH_DIR=/home/agent/.oh-my-zsh
+    OZSH_DIR=/home/agent/.oh-my-zsh \
+    MISE_DATA_DIR=/home/agent/.local/share/mise
+
+# keep all mise tools in agent space
+ENV MISE_CONFIG_DIR=/home/agent/.config/mise \
+    MISE_CACHE_DIR=$MISE_DATA_DIR/cache \
+    PATH="$MISE_DATA_DIR/shims:$PATH"
 
 USER agent
 
@@ -43,19 +52,16 @@ RUN set -eu; \
     git clone https://github.com/joshskidmore/zsh-fzf-history-search.git $PLUGINS_DIR/zsh-fzf-history-search
 
 COPY --chown=agent:agent docker/.zshrc /home/agent/.zshrc
+COPY --chown=agent:agent docker/mise/config.toml /home/agent/.config/mise/config.toml
 COPY --chown=agent:agent docker/starship.toml /home/agent/.config/starship.toml
+COPY --chown=agent:agent docker/herdr/config.toml /home/agent/.config/herdr/config.toml
 COPY --chown=agent:agent docker/update.zsh ${OZSH_DIR}/custom/update.zsh
 
 # setup lazyvim
 RUN git clone https://github.com/LazyVim/starter.git /home/agent/.config/nvim && rm -rf /home/agent/.config/nvim/.git
 
-# install mise
-ARG MISE_VERSION
-RUN curl https://mise.run | sh && mise --version
-
-# install herdr
-RUN curl -fsSL https://herdr.dev/install.sh | sh && herdr --version
-COPY --chown=agent:agent docker/herdr/config.toml /home/agent/.config/herdr/config.toml
+# install mise tools
+RUN mise trust && mise install
 
 ENTRYPOINT ["herdr"]
 CMD []

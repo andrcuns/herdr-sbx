@@ -2,7 +2,7 @@
 schemaVersion: "3"
 kind: workload
 displayName: herdr
-description: Pi development sandbox with herdr, mise, and an opinionated zsh setup.
+description: Development sandbox with mise, herdr, hunk and an opinionated zsh setup.
 sourceUrl: https://github.com/andrcuns/herdr-sbx
 
 capabilities:
@@ -38,13 +38,8 @@ capabilities:
           env: [SSH_AUTH_SOCK]
           command: [bash, /home/agent/setup-git.sh]
       install:
-        - description: "Install global mise tools"
-          command: "mise install"
-          user: "1000"
         - description: "Install global npm packages"
           user: "1000"
-          env: [NPM_CONFIG_PREFIX]
           command: |
-            npm config set allow-scripts=@ataraxy-labs/sem,@earendil-works/pi-coding-agent,diff-so-fancy --location=user
-            npm install -g diff-so-fancy @ataraxy-labs/sem @earendil-works/pi-coding-agent
-            pi update --extensions
+            npm config set allow-scripts=@ataraxy-labs/sem,diff-so-fancy --location=user
+            npm install -g diff-so-fancy @ataraxy-labs/sem

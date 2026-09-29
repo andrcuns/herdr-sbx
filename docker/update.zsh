@@ -31,6 +31,7 @@ function update() {
 
   echo
   log-info "***Update global mise tools and run cleanup***"
+  sudo mise self-update
   mise up --bump --cd $HOME/.config/mise
   mise prune --cd $HOME/.config/mise --yes
 
