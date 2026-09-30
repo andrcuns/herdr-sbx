@@ -52,6 +52,7 @@ capabilities:
       install:
         - description: "Install global npm packages"
           user: "1000"
+          env: [NPM_CONFIG_PREFIX]
           command: |
             npm config set allow-scripts=@ataraxy-labs/sem,diff-so-fancy --location=user
             npm install -g diff-so-fancy @ataraxy-labs/sem

@@ -21,4 +21,5 @@ capabilities:
       install:
         - description: "Install pi"
           user: "1000"
+          env: [NPM_CONFIG_PREFIX]
           command: npm install -g --ignore-scripts @earendil-works/pi-coding-agent
