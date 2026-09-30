@@ -61,4 +61,3 @@ COPY --chown=agent:agent files/home/ /home/agent/
 COPY --chown=agent:agent files/update.zsh ${OZSH_DIR}/custom/update.zsh
 
 ENTRYPOINT ["herdr"]
-CMD []
