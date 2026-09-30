@@ -56,7 +56,7 @@ COPY --from=ghcr.io/jdx/mise:2026.9.17 /usr/local/bin/mise /usr/local/bin/mise
 COPY --chown=agent:agent files/home/.config/mise/config.toml /home/agent/.config/mise/
 RUN mise trust && mise install
 
-# add configs and setup files
+# add configs
 COPY --chown=agent:agent files/home/ /home/agent/
 COPY --chown=agent:agent files/update.zsh ${OZSH_DIR}/custom/update.zsh
 
