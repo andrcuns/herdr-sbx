@@ -1,9 +1,0 @@
-# syntax=docker/sandbox-kit:3
-schemaVersion: "3"
-kind: set
-displayName: Herdr with pi coding agent
-version: "0.0.1"
-
-kits:
-  - ref: ghcr.io/andrcuns/herdr:latest
-  - ref: git+https://github.com/andrcuns/herdr-sbx.git#ref=main&dir=pi

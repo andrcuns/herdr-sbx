@@ -5,19 +5,19 @@ A [Docker Sandbox Kit v3](https://github.com/docker/sandbox-kit-spec) with [herd
 ## Usage
 
 ```console
-$ sbx setup ssh
-$ sbx create --name herdr ghcr.io/andrcuns/herdr:latest workspace-folder-1 workspace-folder-2
-$ herdr --remote herdr.sbx
+sbx setup ssh
+sbx create --name herdr ghcr.io/andrcuns/herdr:latest workspace-folder-1 workspace-folder-2
+herdr --remote herdr.sbx
 ```
 
 This lets herdr manage multiple folders within a single sandbox. To attach directly, run `sbx run --name herdr`.
 
 ### Pi harness
 
-Use the included `set` to start a sandbox with [pi](https://pi.dev/docs/latest) harness preinstalled
+Use the `pi` mixin to add [pi](https://pi.dev/docs/latest) harness to the sandbox
 
 ```console
-$ sbx create --name herdr-pi "git+https://github.com/andrcuns/herdr-sbx.git#ref=main" workspace-folder-1
+sbx create --name herdr-pi ghcr.io/andrcuns/herdr:latest --kit "git+https://github.com/andrcuns/herdr-sbx.git#ref=main&dir=pi" workspace-folder-1
 ```
 
 ### Updating internal tools
