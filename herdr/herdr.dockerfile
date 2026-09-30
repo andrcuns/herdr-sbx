@@ -22,6 +22,9 @@ RUN set -eu; \
     eza \
     gnupg \
     lazygit \
+    libffi-dev \
+    libyaml-dev \
+    zlib1g-dev \
     && apt-get autoclean; \
     chsh -s /usr/bin/zsh agent
 
