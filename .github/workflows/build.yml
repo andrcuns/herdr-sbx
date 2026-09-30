@@ -40,5 +40,4 @@ jobs:
           cache-to: type=gha,mode=max
           tags: ghcr.io/andrcuns/herdr:latest
       - name: Validate image
-        if: github.event_name == 'pull_request'
         run: docker run ghcr.io/andrcuns/herdr:latest --version

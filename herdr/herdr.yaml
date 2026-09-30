@@ -17,7 +17,6 @@ capabilities:
   - type: com.docker.sandbox/ssh-agent@1
     description: Sign git commits and tags with the user's SSH key
     config:
-      optional: true
       unrestricted: false
       phase: runtime
       sign: [git]
