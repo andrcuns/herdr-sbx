@@ -35,7 +35,6 @@ capabilities:
       startup:
         - description: "Setup git for commit signing"
           user: "1000"
-          env: [SSH_AUTH_SOCK]
           command: [bash, /home/agent/setup-git.sh]
       install:
         - description: "Install global npm packages"

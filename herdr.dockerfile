@@ -25,9 +25,6 @@ RUN set -eu; \
     && apt-get autoclean; \
     chsh -s /usr/bin/zsh agent
 
-# Add mise
-COPY --from=ghcr.io/jdx/mise:latest /usr/local/bin/mise /usr/local/bin/mise
-
 # env
 ENV SHELL=/usr/bin/zsh \
     LANG=C.UTF-8 \
@@ -51,17 +48,17 @@ RUN set -eu; \
     git clone https://github.com/zsh-users/zsh-history-substring-search.git $PLUGINS_DIR/zsh-history-substring-search; \
     git clone https://github.com/joshskidmore/zsh-fzf-history-search.git $PLUGINS_DIR/zsh-fzf-history-search
 
-COPY --chown=agent:agent docker/.zshrc /home/agent/.zshrc
-COPY --chown=agent:agent docker/mise/config.toml /home/agent/.config/mise/config.toml
-COPY --chown=agent:agent docker/starship.toml /home/agent/.config/starship.toml
-COPY --chown=agent:agent docker/herdr/config.toml /home/agent/.config/herdr/config.toml
-COPY --chown=agent:agent docker/update.zsh ${OZSH_DIR}/custom/update.zsh
-
 # setup lazyvim
 RUN git clone https://github.com/LazyVim/starter.git /home/agent/.config/nvim && rm -rf /home/agent/.config/nvim/.git
 
 # install mise tools
+COPY --from=ghcr.io/jdx/mise:2026.9.17 /usr/local/bin/mise /usr/local/bin/mise
+COPY --chown=agent:agent files/home/.config/mise/config.toml /home/agent/.config/mise/
 RUN mise trust && mise install
+
+# add configs and setup files
+COPY --chown=agent:agent files/home/ /home/agent/
+COPY --chown=agent:agent files/update.zsh ${OZSH_DIR}/custom/update.zsh
 
 ENTRYPOINT ["herdr"]
 CMD []
