@@ -13,6 +13,11 @@ capabilities:
       path: /home/agent/.pi/agent/skills
   - type: com.docker.sandbox/lifecycle@1
     config:
+      startup:
+        # Ensure .pi directory is writeable by agent user
+        - command: [sh, -c, "chown -R agent:agent /home/agent/.pi 2>/dev/null || true"]
+          user: "0"
+          description: Re-own pi skills volume mount roots to agent
       install:
         - description: "Install pi"
           user: "1000"
