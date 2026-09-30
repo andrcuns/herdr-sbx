@@ -11,7 +11,10 @@ capabilities:
   - type: com.docker.sandbox/network-policy@1
     config:
       install:
-        allow: ["*"]
+        allow:
+          - registry.npmjs.org:443
+          - github.com:443
+          - release-assets.githubusercontent.com:443
       runtime:
         allow: ["*"]
   - type: com.docker.sandbox/ssh-agent@1
