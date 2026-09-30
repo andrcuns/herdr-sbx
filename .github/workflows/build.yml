@@ -31,14 +31,14 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v7.4.0
         with:
-          context: .
+          context: herdr
           file: herdr.yaml
           platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: ${{ github.event_name != 'pull_request' }}
           load: ${{ github.event_name == 'pull_request' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          tags: ghcr.io/andrcuns/herdr-sbx:latest
+          tags: ghcr.io/andrcuns/herdr:latest
       - name: Validate image
         if: github.event_name == 'pull_request'
-        run: docker run ghcr.io/andrcuns/herdr-sbx:latest --version
+        run: docker run ghcr.io/andrcuns/herdr:latest --version
