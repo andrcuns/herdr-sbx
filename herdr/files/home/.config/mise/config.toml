@@ -4,6 +4,7 @@ node = "latest"
 ruby = "latest"
 
 # apps
+herdr = "latest"
 hunk = "latest"
 
 #llm
