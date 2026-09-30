@@ -34,7 +34,7 @@ ENV SHELL=/usr/bin/zsh \
 # keep all mise tools in agent space
 ENV MISE_CONFIG_DIR=/home/agent/.config/mise \
     MISE_CACHE_DIR=$MISE_DATA_DIR/cache \
-    PATH="$MISE_DATA_DIR/shims:$PATH"
+    PATH="$PATH:$MISE_DATA_DIR/shims"
 
 USER agent
 
