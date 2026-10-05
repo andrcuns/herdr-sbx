@@ -22,4 +22,4 @@ capabilities:
         - description: "Install pi"
           user: "1000"
           env: [NPM_CONFIG_PREFIX]
-          command: npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+          command: curl -fsSL https://pi.dev/install.sh | sh

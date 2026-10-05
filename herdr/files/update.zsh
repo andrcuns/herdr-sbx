@@ -10,8 +10,8 @@ function update() {
     fi
   }
 
-  update-pi-extensions() {
-    pi update --extensions
+  update-pi() {
+    pi update && pi update --extensions
   }
 
   log-info() {
@@ -40,8 +40,10 @@ function update() {
   update-npm-packages
 
   echo
-  log-info "***Update pi extensions***"
-  update-pi-extensions
+  if pi --version 2>/dev/null; then
+    log-info "***Update pi***"
+    update-pi
+  fi
 
   echo
   log-info "***Update omzsh and plugins***"
