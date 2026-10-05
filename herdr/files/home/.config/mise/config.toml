@@ -8,7 +8,7 @@ hunk = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
-install_before = "2d"
+minimum_release_age = "2d"
 
 [settings.ruby]
 compile = false
