@@ -95,7 +95,7 @@ alias ll='eza --long --icons --group-directories-first'
 alias la='eza --long --all --icons --group-directories-first --icons'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias p='pnpm'
-alias src='cd $WORKSPACE_DIR'
+alias wsp='cd $WORKSPACE_DIR'
 
 # =====================================================================================================================
 # Custom integrations
