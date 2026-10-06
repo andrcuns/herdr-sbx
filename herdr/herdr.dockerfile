@@ -1,3 +1,4 @@
+FROM ghcr.io/jdx/mise:2026.10.2 AS mise
 FROM docker/sandbox-templates:shell-docker@sha256:1560168ac5fb9ce23d413c878349334c5845c07e264cd675d7867f0c78ad1761
 
 USER root
@@ -55,9 +56,12 @@ RUN set -eu; \
 RUN git clone https://github.com/LazyVim/starter.git /home/agent/.config/nvim && rm -rf /home/agent/.config/nvim/.git
 
 # install mise tools
-COPY --from=ghcr.io/jdx/mise:2026.9.17 /usr/local/bin/mise /usr/local/bin/mise
+COPY --from=mise /usr/local/bin/mise /usr/local/bin/mise
 COPY --chown=agent:agent files/home/.config/mise/config.toml /home/agent/.config/mise/
 RUN mise trust && mise install
+
+# add gh stacked pr extension
+RUN gh extension install github/gh-stack
 
 # add configs
 COPY --chown=agent:agent files/home/ /home/agent/
