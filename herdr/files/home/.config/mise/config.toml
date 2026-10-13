@@ -1,4 +1,6 @@
 [tools]
+node = "latest"
+
 # apps
 herdr = "latest"
 hunk = "latest"
