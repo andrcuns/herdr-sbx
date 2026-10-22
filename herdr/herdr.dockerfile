@@ -9,6 +9,7 @@ RUN set -eu; \
     && apt-get -y --no-install-recommends install  \
     curl \
     git \
+    parallel \
     ca-certificates \
     build-essential \
     ripgrep \
