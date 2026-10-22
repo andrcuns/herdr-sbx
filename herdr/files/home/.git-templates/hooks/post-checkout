@@ -33,7 +33,7 @@ fi
 codegraph-init() {
   if [ -d codegraph ] && [ -n "$(ls -A codegraph)" ]; then
     codegraph sync
-  else
+  elif [ -d codegraph ]; then
     codegraph init
   fi
 }
