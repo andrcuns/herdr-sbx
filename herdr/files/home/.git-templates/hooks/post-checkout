@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Initialize new clones and worktrees, copying local setup only into worktrees.
+set -eu
+
+# Both clones and new worktrees have a null previous HEAD and a branch-checkout
+# flag of 1. Skip ordinary branch switches and file checkouts.
+[ "${3:-}" = 1 ] || exit 0
+case "${1:-}" in
+'' | *[!0]*) exit 0 ;;
+esac
+
+git_dir=$(git rev-parse --absolute-git-dir)
+common_dir=$(git rev-parse --path-format=absolute --git-common-dir)
+
+# Only linked worktrees have a separate Git directory. A new clone has no
+# source checkout to copy from, but still needs the initialization below.
+if [ "$git_dir" != "$common_dir" ]; then
+  # For a standard checkout, the shared Git directory is <main-checkout>/.git.
+  source=$(dirname "$common_dir")
+
+  for file in AGENTS.override.md .envrc node_modules codegraph .zed .vscode .idea; do
+    # Preserve existing files, directories, and even dangling symlinks.
+    if { [ -e "$source/$file" ] || [ -L "$source/$file" ]; } && [ ! -e "$file" ] && [ ! -L "$file" ]; then
+      cp -R "$source/$file" "$file"
+    fi
+  done
+fi
+
+if [ -f "mise.toml" ] || [ -f ".mise/config.toml" ]; then
+  mise trust && mise install
+fi
+
+codegraph-init() {
+  if [ -d codegraph ] && [ -n "$(ls -A codegraph)" ]; then
+    codegraph sync
+  else
+    codegraph init
+  fi
+}
+
+npm-init() {
+  if [ -f yarn.lock ]; then
+    yarn install
+  elif [ -f pnpm-lock.yaml ]; then
+    pnpm install
+  elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+    npm install
+  fi
+}
+
+bundle-init() {
+  if [ -f Gemfile.lock ]; then
+    bundle install
+  fi
+}
+
+export -f codegraph-init npm-init bundle-init
+parallel --jobs 3 --halt soon,fail=1 bash -eu -c '{}' ::: codegraph-init npm-init bundle-init

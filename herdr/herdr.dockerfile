@@ -34,7 +34,8 @@ RUN set -eu; \
 ENV SHELL=/usr/bin/zsh \
     LANG=C.UTF-8 \
     OZSH_DIR=/home/agent/.oh-my-zsh \
-    MISE_DATA_DIR=/home/agent/.local/share/mise
+    MISE_DATA_DIR=/home/agent/.local/share/mise \
+    CODEGRAPH_TELEMETRY=0
 
 # keep all mise tools in agent space
 ENV MISE_CONFIG_DIR=/home/agent/.config/mise \

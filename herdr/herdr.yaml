@@ -50,7 +50,12 @@ capabilities:
             set_default commit.gpgsign true
             set_default tag.gpgsign true
       install:
+        - description: Configure global hooks template path
+          user: "1000"
+          command: git config --global init.templateDir "/home/agent/.git-templates"
         - description: "Install global npm packages"
           user: "1000"
           env: [NPM_CONFIG_PREFIX]
-          command: npm install -g diff-so-fancy @ataraxy-labs/sem --allow-scripts=diff-so-fancy,@ataraxy-labs/sem
+          command: |
+            npm install -g corepack
+            npm install -g diff-so-fancy @ataraxy-labs/sem --allow-scripts=diff-so-fancy,@ataraxy-labs/sem
