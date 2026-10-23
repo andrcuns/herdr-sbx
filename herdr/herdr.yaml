@@ -6,6 +6,12 @@ description: Development sandbox with mise, herdr, hunk and an opinionated zsh s
 author: andrcuns
 sourceUrl: https://github.com/andrcuns/herdr-sbx
 
+args:
+  projects_dir:
+    default: /home/agent/workspace
+    description: Project directory where checkout initialization is enabled
+    env: PROJECTS_DIR
+
 capabilities:
   - type: com.docker.sandbox/sbx@1
   - type: com.docker.sandbox/network-policy@1

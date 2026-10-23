@@ -2,6 +2,13 @@
 # Initialize new clones and worktrees, copying local setup only into worktrees.
 set -eu
 
+# Limit initialization to project checkouts and herdr-managed worktrees.
+projects_dir=${PROJECTS_DIR:-/home/agent/workspace}
+case "$(pwd -P)/" in
+"${projects_dir%/}/"* | /home/agent/.herdr/worktrees/* | "${WORKSPACE_DIR}/"*) ;;
+*) exit 0 ;;
+esac
+
 # Both clones and new worktrees have a null previous HEAD and a branch-checkout
 # flag of 1. Skip ordinary branch switches and file checkouts.
 [ "${3:-}" = 1 ] || exit 0
@@ -18,7 +25,7 @@ if [ "$git_dir" != "$common_dir" ]; then
   # For a standard checkout, the shared Git directory is <main-checkout>/.git.
   source=$(dirname "$common_dir")
 
-  for file in AGENTS.override.md .envrc node_modules codegraph .zed .vscode .idea; do
+  for file in AGENTS.override.md .envrc node_modules .codegraph .zed .vscode .idea; do
     # Preserve existing files, directories, and even dangling symlinks.
     if { [ -e "$source/$file" ] || [ -L "$source/$file" ]; } && [ ! -e "$file" ] && [ ! -L "$file" ]; then
       cp -R "$source/$file" "$file"
@@ -31,9 +38,9 @@ if [ -f "mise.toml" ] || [ -f ".mise/config.toml" ]; then
 fi
 
 codegraph-init() {
-  if [ -d codegraph ] && [ -n "$(ls -A codegraph)" ]; then
+  if [ -d .codegraph ] && [ -n "$(ls -A .codegraph)" ]; then
     codegraph sync
-  elif [ -d codegraph ]; then
+  elif [ -d .codegraph ]; then
     codegraph init
   fi
 }
