@@ -23,7 +23,6 @@ RUN set -eu; \
     neovim \
     eza \
     gnupg \
-    lazygit \
     libffi-dev \
     libyaml-dev \
     zlib1g-dev \

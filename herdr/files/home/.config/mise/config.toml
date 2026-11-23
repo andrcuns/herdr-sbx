@@ -4,6 +4,7 @@ node = "latest"
 # apps
 herdr = "latest"
 hunk = "latest"
+lazygit = "latest"
 
 #llm
 "aqua:colbymchenry/codegraph" = "latest"
