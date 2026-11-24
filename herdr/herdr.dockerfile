@@ -1,4 +1,4 @@
-FROM ghcr.io/jdx/mise:2026.11.9 AS mise
+FROM ghcr.io/jdx/mise:2026.11.14 AS mise
 FROM docker/sandbox-templates:shell-docker@sha256:b178ca62ec2e79af2a044e3ec321bdb72188690e1c15d573ea5524b397554d3d
 
 USER root
